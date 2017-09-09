@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.bezerros.mobile.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Bezerros Mobile</name>
+<widget id="br.com.bezerros.mobile.appv2" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Bezerros Mobile V2</name>
     <description>Aplicativo para visualização de nóticias.</description>
     <author email="jbsn@cin.ufpe.br" href="http://netobarbosa.com.br/">JB Soluções</author>
     <content src="index.html" />
@@ -22,7 +22,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <preference name="orientation" value="portrait">
+    <preference name="orientation" value="portrait" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
