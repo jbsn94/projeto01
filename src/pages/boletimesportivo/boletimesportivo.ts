@@ -7,11 +7,11 @@ import $ from 'jquery';
 
 @IonicPage()
 @Component({
-  selector: 'page-prefeiturabezerros',
-  templateUrl: 'prefeiturabezerros.html',
+  selector: 'page-boletimesportivo',
+  templateUrl: 'boletimesportivo.html',
 })
-export class PrefeiturabezerrosPage {
-  url: string = 'https://bezerros.pe.gov.br/portal/feed';
+export class BoletimesportivoPage {
+  url: string = 'http://www.boletimesportivo.net/novo/feed/';
   posts: any = [];
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -41,23 +41,26 @@ export class PrefeiturabezerrosPage {
       let regex2 = /(?:favicon\.png)/i;
       for(let i in posts){
         let imgs = [];
-        $(posts[i]['content:encoded'][0]).find('img').each(function(index,value){
-          if($(this).attr('src').match(regex) && !$(this).attr('src').match(regex2) && !$(this).hasClass('wp-smiley')){
-            imgs.push({
-              src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('src'),
-            });
-          }
-        });
+        if(posts[i]['content:encoded']) {
+          $(posts[i]['content:encoded'][0]).find('img').each(function(index,value){
+            if($(this).attr('src').match(regex) && !$(this).attr('src').match(regex2) && !$(this).hasClass('wp-smiley')){
+              imgs.push({
+                src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('src'),
+              });
+            }
+          });
+        }
         this.posts.push({
           title: posts[i].title[0],
           imgs: imgs,
-          texto: $(posts[i]['content:encoded'][0]).text(),
+          texto: posts[i]['content:encoded'] ? $(posts[i]['content:encoded'][0]).text() : posts[i]['description'][0],
           categoria: posts[i]['category'][0],
           link: posts[i]['link'][0],
           data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
           autor: posts[i]['dc:creator'][0],
-          iframe: $(posts[i]['content:encoded'][0]).find('iframe')[0],
-          fonte: result.rss.channel[0].title
+          iframe: posts[i]['content:encoded'] ? $(posts[i]['content:encoded'][0]).find('iframe')[0] : null,
+          fonte: result.rss.channel[0]['title'][0] ? result.rss.channel[0]['title'][0] : result.rss.channel[0]['link'][0],
+          mp3: posts[i]['description'][0].match(/(https?:\/\/.*\.(?:mp3))/i) ? posts[i]['description'][0].match(/(https?:\/\/.*\.(?:mp3))/i)[0] : null
         });
       }
     });

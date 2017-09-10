@@ -7,27 +7,27 @@ import $ from 'jquery';
 
 @IonicPage()
 @Component({
-  selector: 'page-bezerroshoje',
-  templateUrl: 'bezerroshoje.html',
+  selector: 'page-blitznasruas',
+  templateUrl: 'blitznasruas.html',
 })
-export class BezerroshojePage {
-  url: string = 'http://bezerroshoje.ne10.uol.com.br/feed';
+export class BlitznasruasPage {
+  url: string = 'http://blitznasruas.com.br/site/feed/';
   posts: any = [];
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public platform: Platform,
-              public http: Http,
-              public modal: ModalController,
-              public loading: LoadingController) {
-                let loader = this.loading.create({
-                  content: 'Carregando..'
-                });
-                loader.present();
-                this.platform.ready().then(()=>{
-                  this.http.get(this.url).subscribe(res => {
-                    this.ajustaXml(res.text(), loader);
-                  });
-                });
+    public navParams: NavParams,
+    public platform: Platform,
+    public http: Http,
+    public modal: ModalController,
+    public loading: LoadingController) {
+      let loader = this.loading.create({
+        content: 'Carregando..'
+      });
+      loader.present();
+      this.platform.ready().then(()=>{
+        this.http.get(this.url).subscribe(res => {
+          this.ajustaXml(res.text(), loader);
+        });
+      });
   }
 
   /**

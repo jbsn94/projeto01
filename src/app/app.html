@@ -1,8 +1,14 @@
 <ion-menu [content]="content">
   <ion-content style="background-color: #044fa1">
-    <ion-item color="azul">
+    <button menuClose ion-button clear icon-only item-end style="position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 2;">
+      <ion-icon name="arrow-round-back" color="light"></ion-icon>
+    </button>
+    <ion-item color="azul" style="padding-top: 30px;">
       <ion-thumbnail>
-        <img src="http://download.seaicons.com/icons/designbolts/free-multimedia/1024/Simple-Mic-icon.png">
+        <img src="http://download.seaicons.com/icons/designbolts/free-multimedia/1024/Simple-Mic-icon.png" style="margin: auto">
       </ion-thumbnail>
     </ion-item>
     <ion-list menu-button-list no-lines>
@@ -11,6 +17,12 @@
       </button>
       <button menuClose ion-item color="azul" text-center (click)="openPage(pages[1])">
         Prefeitura de Bezerros
+      </button>
+      <button menuClose ion-item color="azul" text-center (click)="openPage(pages[2])">
+        Blitz nas Ruas
+      </button>
+      <button menuClose ion-item color="azul" text-center (click)="openPage(pages[3])">
+        Boletim Esportivo
       </button>
     </ion-list>
   </ion-content>

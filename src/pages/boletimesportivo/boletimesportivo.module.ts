@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { PrefeiturabezerrosPage } from './prefeiturabezerros';
+import { BoletimesportivoPage } from './boletimesportivo';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [
-    PrefeiturabezerrosPage,
+    BoletimesportivoPage,
   ],
   imports: [
     IonicImageViewerModule,
-    IonicPageModule.forChild(PrefeiturabezerrosPage),
+    IonicPageModule.forChild(BoletimesportivoPage),
   ],
 })
-export class PrefeiturabezerrosPageModule {}
+export class BoletimesportivoPageModule {}

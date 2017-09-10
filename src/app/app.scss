@@ -19,3 +19,46 @@
     padding-left: 0px;
     font-weight: bold;
 }
+
+[text-normal] {
+    text-transform: none;
+}
+
+[categoria] {
+    position: absolute;
+    padding: 5px;
+    z-index: 2;
+}
+[categoria] > span {
+    padding: 5px;
+    background-color: #ffce54;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+[card-content-text] {
+    color: #585858;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+ion-card {  
+    border-top: solid #044fa1;
+    border-bottom: solid #044fa1;   
+}
+
+/*
+    Style for slides fraction paginate
+*/
+.swiper-pagination.swiper-pagination-fraction{
+    width: fit-content;
+    padding: 10px;
+    background-color: #ffce54;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-left: 14rem;
+}

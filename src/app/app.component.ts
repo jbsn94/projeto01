@@ -14,6 +14,8 @@ export class MyApp {
   pages: Array<{nome: string}> = [
     {nome: 'BezerroshojePage'},
     {nome: 'PrefeiturabezerrosPage'},
+    {nome: 'BlitznasruasPage'},
+    {nome: 'BoletimesportivoPage'}
   ];
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {

@@ -8,6 +8,46 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-padding>
+  <ng-container *ngFor="let post of posts">
 
+    <ion-card *ngIf="!post.iframe">
+      <!-- Post category -->
+      <p categoria>
+        <span>{{post.categoria}}</span>
+      </p>
+
+      <!-- Post image -->
+      <ng-container *ngIf="post.imgs.length">
+        <img [src]="post.imgs[0].src" style="min-height: 10px" imageViewer *ngIf="post.texto.length > 5 || post.imgs.length == 1"/>
+        
+        <ion-slides loop="true" pager zoom="true" paginationType="fraction" *ngIf="post.imgs.length > 1 && post.texto.length < 5">
+          <ion-slide *ngFor="let img of post.imgs">
+            <img [src]="img.src" style="width: 100%" imageViewer/>
+          </ion-slide>
+        </ion-slides>
+
+      </ng-container>
+
+      <!-- When post don't have img -->
+      <ng-container *ngIf="post.imgs.length == 0">
+        <div style="height: 10px"></div>
+      </ng-container>
+
+      <!-- Post content -->
+      <ion-card-content>
+        <ion-card-title style="font-size: 2.0rem;font-weight: bold;">
+          {{post.title}}
+        </ion-card-title>
+        <p card-content-text>{{post.texto}}</p>
+      </ion-card-content>
+
+      <!-- Post button action -->
+      <button ion-item color="azul" *ngIf="post.texto.length > 5" (click)="openModal(post)">
+        Veja mais
+        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
+      </button>
+    </ion-card>
+
+  </ng-container>
 </ion-content>
