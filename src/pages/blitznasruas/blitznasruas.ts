@@ -48,6 +48,13 @@ export class BlitznasruasPage {
             });
           }
         });
+        $(posts[i]['content:encoded'][0]).find('a').each(function(index,value){
+          if($(this).attr('href').match(regex) && !$(this).attr('href').match(regex2) && !$(this).hasClass('wp-smiley')){
+            imgs.push({
+              src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('href'),
+            });
+          }
+        });
         this.posts.push({
           title: posts[i].title[0],
           imgs: imgs,

@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, PopoverController } from 'ionic-angular';
 
-/**
- * Generated class for the NoticiaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,8 +12,16 @@ export class NoticiaPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              public view: ViewController) {
+              public view: ViewController,
+              public popoverCtrl: PopoverController) {
               this.noticia = this.navParams.get('noticia');
+  }
+
+  menu(event){
+    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: this.noticia});
+    popover.present({
+      ev: event
+    });
   }
 
   close(){

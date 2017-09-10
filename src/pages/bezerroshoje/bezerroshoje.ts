@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, PopoverController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
@@ -18,7 +18,8 @@ export class BezerroshojePage {
               public platform: Platform,
               public http: Http,
               public modal: ModalController,
-              public loading: LoadingController) {
+              public loading: LoadingController,
+              public popoverCtrl: PopoverController) {
                 let loader = this.loading.create({
                   content: 'Carregando..'
                 });
@@ -57,7 +58,8 @@ export class BezerroshojePage {
           data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
           autor: posts[i]['dc:creator'][0],
           iframe: $(posts[i]['content:encoded'][0]).find('iframe')[0],
-          fonte: result.rss.channel[0]['title'][0] ? result.rss.channel[0]['title'][0] : result.rss.channel[0]['link'][0]
+          fonte: result.rss.channel[0]['title'][0] ? result.rss.channel[0]['title'][0] : result.rss.channel[0]['link'][0],
+          mp4: $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]') ? $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]').attr('src') : null
         });
       }
     });
@@ -67,6 +69,13 @@ export class BezerroshojePage {
   openModal(noticia){
     let modal = this.modal.create('NoticiaPage', {noticia: noticia});
     modal.present();
+  }
+
+  cardPopup(event, noticia){
+    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: noticia});
+    popover.present({
+      ev: event
+    });
   }
 
 }
