@@ -11,7 +11,7 @@
   <ion-content no-padding>
     <ng-container *ngFor="let post of posts">
   
-      <ion-card *ngIf="!post.iframe">
+      <ion-card *ngIf="!post.iframe" class="animated fadeInRight">
         <!-- Post category -->
         <p categoria>
           <span>{{post.categoria}}</span>
@@ -34,7 +34,7 @@
           </ion-card-title>
           <p card-content-text *ngIf="!post.mp3">{{post.texto}}</p>
         </ion-card-content>
-        <audio controls *ngIf="post.mp3" style="width: 100%;margin-bottom: -4px;">
+        <audio controls preload="none" *ngIf="post.mp3" style="width: 100%;margin-bottom: -4px;background-color: #fafafa;">
           <source [src]="post.mp3" type="audio/mpeg">
         </audio>
   

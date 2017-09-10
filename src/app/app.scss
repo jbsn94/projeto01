@@ -16,8 +16,12 @@
 // automatically applied to the <body> element in the app.
 
 [menu-button-list] > button {
-    padding-left: 0px;
     font-weight: bold;
+    // border-width: 1px !important;
+    // border-top: solid white;
+}
+[menu-button-list] > button:last-child {
+    // border-bottom: solid white;
 }
 
 [text-normal] {

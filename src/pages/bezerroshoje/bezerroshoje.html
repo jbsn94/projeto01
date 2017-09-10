@@ -11,7 +11,7 @@
 <ion-content no-padding>
   <ng-container *ngFor="let post of posts">
 
-    <ion-card *ngIf="!post.iframe">
+    <ion-card *ngIf="!post.iframe" class="animated fadeInRight">
       <!-- Post category -->
       <p categoria>
         <span>{{post.categoria}}</span>

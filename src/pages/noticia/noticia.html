@@ -38,9 +38,7 @@
       <ion-card-title text-center>
         {{noticia.title}}
       </ion-card-title>
-      <p text-justify class="conteudo">
-        {{noticia.texto}}
-      </p>
+      <p text-justify class="conteudo" [innerHTML]="noticia.texto"></p>
       <p class="creditos">
         <small>
           <b>Fonte:</b> <i>{{noticia.fonte}}</i>

@@ -8,21 +8,37 @@
     </button>
     <ion-item color="azul" style="padding-top: 30px;">
       <ion-thumbnail>
-        <img src="http://download.seaicons.com/icons/designbolts/free-multimedia/1024/Simple-Mic-icon.png" style="margin: auto">
+        <img src="assets/imgs/app-menu-icon.png" style="margin: auto">
       </ion-thumbnail>
     </ion-item>
-    <ion-list menu-button-list no-lines>
+    <ion-list no-lines menu-button-list>
       <button menuClose ion-item color="azul" text-center (click)="openPage(pages[0])">
+        <ion-avatar item-start>
+          <img src="assets/imgs/bezerroshoje-icon.jpeg">
+        </ion-avatar>
         Bezerros Hoje
+        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
       </button>
       <button menuClose ion-item color="azul" text-center (click)="openPage(pages[1])">
+        <ion-avatar item-start>
+          <img src="assets/imgs/prefeiturabezerros-icon.jpg">
+        </ion-avatar>
         Prefeitura de Bezerros
+        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
       </button>
       <button menuClose ion-item color="azul" text-center (click)="openPage(pages[2])">
+        <ion-avatar item-start>
+          <img src="assets/imgs/blitznasruas-icon.png">
+        </ion-avatar>
         Blitz nas Ruas
+        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
       </button>
       <button menuClose ion-item color="azul" text-center (click)="openPage(pages[3])">
+        <ion-avatar item-start>
+          <img src="assets/imgs/boletimesportivo-icon.jpg">
+        </ion-avatar>
         Boletim Esportivo
+        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
       </button>
     </ion-list>
   </ion-content>
