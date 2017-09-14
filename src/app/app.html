@@ -1,46 +1,33 @@
 <ion-menu [content]="content">
-  <ion-content style="background-color: #044fa1">
-    <button menuClose ion-button clear icon-only item-end style="position: absolute;
-    top: 0px;
-    right: 0px;
-    z-index: 2;">
-      <ion-icon name="arrow-round-back" color="light"></ion-icon>
+  <ion-content style="background-color: #f5f5f5;">
+    <button menuClose full ion-button clear icon-only item-end>
+      <ion-icon name="arrow-round-back" style="color:#B5B5B5;"></ion-icon>
     </button>
-    <ion-item color="azul" style="padding-top: 30px;">
-      <ion-thumbnail>
-        <img src="assets/imgs/app-menu-icon.png" style="margin: auto">
-      </ion-thumbnail>
-    </ion-item>
     <ion-list no-lines menu-button-list>
-      <button menuClose ion-item color="azul" text-center (click)="openPage(pages[0])">
+      <button menuClose ion-item text-center (click)="openPage(pages[0])">
         <ion-avatar item-start>
           <img src="assets/imgs/bezerroshoje-icon.jpeg">
         </ion-avatar>
-        Bezerros Hoje
-        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
       </button>
-      <button menuClose ion-item color="azul" text-center (click)="openPage(pages[1])">
+      <button menuClose ion-item text-center (click)="openPage(pages[1])">
         <ion-avatar item-start>
           <img src="assets/imgs/prefeiturabezerros-icon.jpg">
         </ion-avatar>
-        Prefeitura de Bezerros
-        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
       </button>
-      <button menuClose ion-item color="azul" text-center (click)="openPage(pages[2])">
+      <button menuClose ion-item text-center (click)="openPage(pages[2])">
         <ion-avatar item-start>
           <img src="assets/imgs/blitznasruas-icon.png">
         </ion-avatar>
-        Blitz nas Ruas
-        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
       </button>
-      <button menuClose ion-item color="azul" text-center (click)="openPage(pages[3])">
+      <button menuClose ion-item text-center (click)="openPage(pages[3])">
         <ion-avatar item-start>
           <img src="assets/imgs/boletimesportivo-icon.jpg">
         </ion-avatar>
-        Boletim Esportivo
-        <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
       </button>
     </ion-list>
+    <button full ion-button clear icon-only style="position: absolute;bottom: 0px;" (click)="close()">
+      <ion-icon name="log-out" style="color:#B5B5B5;"></ion-icon>
+    </button>
   </ion-content>
 
 </ion-menu>

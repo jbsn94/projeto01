@@ -37,6 +37,7 @@
         "cordova-plugin-x-socialsharing": "^5.2.0",
         "cordova-plugin-x-toast": "^2.6.0",
         "es6-promise-plugin": "^4.1.0",
+        "font-awesome": "^4.7.0",
         "ionic-angular": "3.6.1",
         "ionic-img-viewer": "^2.6.1",
         "ionic-plugin-keyboard": "^2.2.1",
@@ -53,6 +54,9 @@
         "typescript": "2.3.4"
     },
     "description": "An Ionic project",
+    "config": {
+        "ionic_copy": "./scripts/custom.js"
+    },
     "cordova": {
         "plugins": {
             "cordova-plugin-console": {},

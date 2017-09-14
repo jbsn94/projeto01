@@ -21,6 +21,15 @@
         <ng-container *ngIf="post.imgs.length">
           <img [src]="post.imgs[0].src" style="min-height: 10px" imageViewer/>
         </ng-container>
+
+        <button ion-button ion-only clear style="
+        z-index: 2;
+        position: absolute;
+        font-size: 1.8rem;
+        right: 0px;
+        margin-top: 0px;" (click)="cardPopup($event, post)">
+          <ion-icon name="md-more" color="dark" icon-right></ion-icon>
+        </button>
         
         <!-- When post don't have img -->
         <ng-container *ngIf="post.imgs.length == 0">
