@@ -16,7 +16,16 @@
         <p categoria>
           <span>{{post.categoria}}</span>
         </p>
-  
+        
+        <button ion-button ion-only clear style="
+        z-index: 2;
+        position: absolute;
+        font-size: 1.8rem;
+        right: 0px;
+        margin-top: 0px;" (click)="cardPopup($event, post)">
+          <ion-icon name="md-more" icon-right style="color:#BFBFBF"></ion-icon>
+        </button>
+
         <!-- Post image -->
         <ng-container *ngIf="post.imgs.length">
           <img [src]="post.imgs[0].src" style="min-height: 10px" imageViewer/>
@@ -43,5 +52,13 @@
       </ion-card>
   
     </ng-container>
+    
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="this.posts.length < this._posts.length">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  
+    <p *ngIf="this.posts.length == this._posts.length && this.posts.length != 0" text-center>
+      <span end-tag-scroll>Última notícia carregada</span>
+    </p>
   </ion-content>
   

@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController, ViewController 
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
 import { Toast } from '@ionic-native/toast';
-declare var window: any;
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 @IonicPage()
 @Component({
   selector: 'page-noticiamenu',
@@ -17,7 +18,8 @@ export class NoticiamenuPage {
               public social: SocialSharing,
               public viewCtrl: ViewController,
               private clipboard: Clipboard,
-              public toastCtrl: Toast) {
+              public toastCtrl: Toast,
+              public browser: InAppBrowser) {
                 this.conteudo = this.navParams.get('noticia');
               }
 
@@ -33,7 +35,7 @@ export class NoticiamenuPage {
   }
 
   abrir(){
-    window.open(this.conteudo.link, '_system', 'location=yes');
+    this.browser.create(this.conteudo.link, '_self', 'zoom=no');
     this.close();
   }
 

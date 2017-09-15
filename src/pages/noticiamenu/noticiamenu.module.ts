@@ -4,6 +4,7 @@ import { NoticiamenuPage } from './noticiamenu';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Clipboard } from '@ionic-native/clipboard';
 import { Toast } from '@ionic-native/toast';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { Toast } from '@ionic-native/toast';
   providers: [
     SocialSharing,
     Clipboard,
-    Toast
+    Toast,
+    InAppBrowser
   ]
 })
 export class NoticiamenuPageModule {}

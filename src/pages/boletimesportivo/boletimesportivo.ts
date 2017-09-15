@@ -13,6 +13,7 @@ import $ from 'jquery';
 export class BoletimesportivoPage {
   url: string = 'http://www.boletimesportivo.net/novo/feed/';
   posts: any = [];
+  _posts: any = [];
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
@@ -51,7 +52,7 @@ export class BoletimesportivoPage {
             }
           });
         }
-        this.posts.push({
+        this._posts.push({
           title: posts[i].title[0],
           imgs: imgs,
           texto: posts[i]['content:encoded'] ? $(posts[i]['content:encoded'][0]).text() : posts[i]['description'][0],
@@ -64,6 +65,7 @@ export class BoletimesportivoPage {
           mp3: posts[i]['description'][0].match(/(https?:\/\/.*\.(?:mp3))/i) ? posts[i]['description'][0].match(/(https?:\/\/.*\.(?:mp3))/i)[0] : null
         });
       }
+      this.posts = this._posts.slice(0,3);
     });
     loader.dismiss();
   }
@@ -78,6 +80,17 @@ export class BoletimesportivoPage {
   openModal(noticia){
     let modal = this.modal.create('NoticiaPage', {noticia: noticia});
     modal.present();
+  }
+
+  doInfinite(infiniteScroll) {
+    if(this.posts.length < this._posts.length){
+      setTimeout(() => {
+        this.posts = this.posts.concat(this._posts.slice(this.posts.length,this.posts.length+3));
+        infiniteScroll.complete();
+      }, 700);
+    } else {
+      infiniteScroll.complete();
+    }
   }
 
 }

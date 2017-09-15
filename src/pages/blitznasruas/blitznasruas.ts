@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, PopoverController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
@@ -13,12 +13,14 @@ import $ from 'jquery';
 export class BlitznasruasPage {
   url: string = 'http://blitznasruas.com.br/site/feed/';
   posts: any = [];
+  _posts: any = [];
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
     public http: Http,
     public modal: ModalController,
-    public loading: LoadingController) {
+    public loading: LoadingController,
+    public popoverCtrl: PopoverController) {
       let loader = this.loading.create({
         content: 'Carregando..'
       });
@@ -55,7 +57,7 @@ export class BlitznasruasPage {
             });
           }
         });
-        this.posts.push({
+        this._posts.push({
           title: posts[i].title[0],
           imgs: imgs,
           texto: $(posts[i]['content:encoded'][0]).text(),
@@ -67,6 +69,7 @@ export class BlitznasruasPage {
           fonte: result.rss.channel[0]['title'][0] ? result.rss.channel[0]['title'][0] : result.rss.channel[0]['link'][0]
         });
       }
+      this.posts = this._posts.slice(0,3);
     });
     loader.dismiss();
   }
@@ -74,6 +77,24 @@ export class BlitznasruasPage {
   openModal(noticia){
     let modal = this.modal.create('NoticiaPage', {noticia: noticia});
     modal.present();
+  }
+
+  cardPopup(event, noticia){
+    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: noticia});
+    popover.present({
+      ev: event
+    });
+  }
+
+  doInfinite(infiniteScroll) {
+    if(this.posts.length < this._posts.length){
+      setTimeout(() => {
+        this.posts = this.posts.concat(this._posts.slice(this.posts.length,this.posts.length+3));
+        infiniteScroll.complete();
+      }, 700);
+    } else {
+      infiniteScroll.complete();
+    }
   }
 
 }
