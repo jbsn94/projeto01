@@ -1,4 +1,4 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+# Projeto 01 criado utilizando o framework [Ionic](http://ionicframework.com/docs/) para criação de um aplicativo movel.
 
 ## How to use this template
 
