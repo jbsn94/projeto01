@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.conecta.bezerros.mobile.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Conecta</name>
+<widget id="br.com.bezerros.digital.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Bezerros Digital</name>
     <description>Aplicativo para visualização de nóticias.</description>
     <author email="jbsn@cin.ufpe.br" href="http://netobarbosa.com.br/">JB Soluções</author>
     <content src="index.html" />

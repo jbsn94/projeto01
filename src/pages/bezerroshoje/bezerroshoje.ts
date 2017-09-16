@@ -31,9 +31,9 @@ export class BezerroshojePage {
                 this.platform.ready().then(()=>{
                   this.http.get(this.url).subscribe(res => {
                     this.ajustaXml(res.text(), loader);
-                    this.localNotification.create('Atenção', {
+                    this.localNotification.create('Bezerros Hoje', {
                       tag: 'message1',
-                      body: 'Foi a notificação',
+                      body: 'COMICICA ganha força nessa legislatura',
                       icon: 'assets/icon/favicon.ico'
                     });
                   });
