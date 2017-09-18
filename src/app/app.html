@@ -1,10 +1,55 @@
 <ion-menu [content]="content">
   <ion-content style="background-color: #f5f5f5;">
-    <button menuClose full ion-button clear icon-only item-end>
-      <ion-icon name="arrow-round-back" style="color:#B5B5B5;"></ion-icon>
-    </button>
+    <ion-list no-lines>
+      <ion-item color="amarelo">
+        <ion-thumbnail item-start style="min-width: 50px;min-height: 50px;">
+          <img src="assets/icon/bd2.png" style="width: 50px;height: 50px;">
+        </ion-thumbnail>
+        <h2 style="font-weight: bold;">Bezerros Digital</h2>
+        <p><small style="opacity: 0.7;font-weight: bold;">Versão 1.0.0 (Beta)</small></p>
+      </ion-item>
+    </ion-list>
+    <!-- <button menuClose full ion-button icon-only color="amarelo">
+      <ion-icon name="arrow-round-back" item-end style="position: absolute;right: 0;"></ion-icon>
+    </button> -->
     <ion-list no-lines menu-button-list>
-      <button menuClose ion-item text-center (click)="openPage(pages[0])">
+      <button menuClose ion-item (click)="openPage(pages[0])">
+        <!-- <ion-icon item-start name="ios-globe" style="font-size: 4rem;">
+          <i class="fa fa-globe" aria-hidden="true"></i>
+        </ion-icon> -->
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/bezerroshoje-icon.jpeg">
+        </ion-thumbnail>
+        Bezerros Hoje
+      </button>
+      <button menuClose ion-item (click)="openPage(pages[1])">
+        <!-- <ion-icon item-start>
+          <i class="fa fa-university" aria-hidden="true"></i>
+        </ion-icon> -->
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/prefeiturabezerros-icon.jpg">
+        </ion-thumbnail>
+        Portal da Prefeitura
+      </button>
+      <button menuClose ion-item (click)="openPage(pages[2])">
+        <!-- <ion-thumbnail item-start style="min-height: 20px;min-width: 20px;margin-right: 25px;">
+          <img src="assets/icon/policeman.png" style="height: 40px;width: 40px;">
+        </ion-thumbnail> -->
+        <ion-thumbnail item-start>
+          <img src="assets/imgs/blitznasruas-icon.png">
+        </ion-thumbnail>
+        Blitz nas Ruas
+      </button>
+      <button menuClose ion-item (click)="openPage(pages[3])">
+          <!-- <ion-icon item-start>
+            <i class="fa fa-futbol-o" aria-hidden="true"></i>
+          </ion-icon> -->
+          <ion-thumbnail item-start>
+            <img src="assets/imgs/boletimesportivo-icon.jpg">
+          </ion-thumbnail>
+          Boletim Esportivo
+        </button>
+      <!-- <button menuClose ion-item text-center (click)="openPage(pages[0])">
         <ion-avatar item-start>
           <img src="assets/imgs/bezerroshoje-icon.jpeg">
         </ion-avatar>
@@ -23,7 +68,7 @@
         <ion-avatar item-start>
           <img src="assets/imgs/boletimesportivo-icon.jpg">
         </ion-avatar>
-      </button>
+      </button> -->
     </ion-list>
     <button full ion-button clear icon-only style="position: absolute;bottom: 0px;" (click)="close()">
       <ion-icon name="log-out" style="color:#B5B5B5;"></ion-icon>
