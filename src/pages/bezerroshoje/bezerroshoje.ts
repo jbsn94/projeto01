@@ -48,7 +48,7 @@ export class BezerroshojePage {
     xml2js.parseString(xml, (err, result) => {
       let posts = result.rss.channel[0].item;
       let regex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
-      let regex2 = /(?:favicon\.png)/i;
+      let regex2 = /(?:favicon\.png|emoji)/i;
       for(let i in posts){
         let imgs = [];
         $(posts[i]['content:encoded'][0]).find('img').each(function(index,value){
@@ -58,18 +58,20 @@ export class BezerroshojePage {
             });
           }
         });
-        this._posts.push({
-          title: posts[i].title[0],
-          imgs: imgs,
-          texto: $(posts[i]['content:encoded'][0]).text(),
-          categoria: posts[i]['category'][0],
-          link: posts[i]['link'][0],
-          data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
-          autor: posts[i]['dc:creator'][0],
-          iframe: $(posts[i]['content:encoded'][0]).find('iframe')[0],
-          fonte: result.rss.channel[0]['title'][0] ? result.rss.channel[0]['title'][0] : result.rss.channel[0]['link'][0],
-          mp4: $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]') ? $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]').attr('src') : null
-        });
+        if(!$(posts[i]['content:encoded'][0]).find('iframe')[0]){
+          this._posts.push({
+            title: posts[i].title[0],
+            imgs: imgs,
+            texto: $(posts[i]['content:encoded'][0]).text(),
+            categoria: posts[i]['category'][0],
+            link: posts[i]['link'][0],
+            data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
+            autor: posts[i]['dc:creator'][0],
+            iframe: $(posts[i]['content:encoded'][0]).find('iframe')[0],
+            fonte: result.rss.channel[0]['title'][0] ? result.rss.channel[0]['title'][0] : result.rss.channel[0]['link'][0],
+            mp4: $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]') ? $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]').attr('src') : null
+          });
+        }
       }
       this.posts = this._posts.slice(0,3);
     });
