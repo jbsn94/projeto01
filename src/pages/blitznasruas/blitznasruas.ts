@@ -39,6 +39,7 @@ export class BlitznasruasPage {
   ajustaXml(xml, loader){
     xml2js.parseString(xml, (err, result) => {
       let posts = result.rss.channel[0].item;
+      console.log(posts);
       let regex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
       let regex2 = /(?:favicon\.png)/i;
       for(let i in posts){

@@ -14,7 +14,7 @@
       <ion-card *ngIf="!post.iframe" class="animated fadeInRight">
         <!-- Post category -->
         <p categoria>
-          <span>{{post.categoria}}</span>
+          <ion-badge color="amarelo">{{post.categoria}}</ion-badge>
         </p>
 
         <button ion-button ion-only clear style="
@@ -58,7 +58,7 @@
     </ion-infinite-scroll>
   
     <p *ngIf="this.posts.length == this._posts.length && this.posts.length != 0" text-center>
-      <span end-tag-scroll>Última notícia carregada</span>
+      <ion-badge color="cinza">Fim</ion-badge>
     </p>
   </ion-content>
   

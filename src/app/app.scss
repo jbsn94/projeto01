@@ -50,15 +50,7 @@
     padding: 5px;
     z-index: 2;
 }
-[categoria] > span {
-    padding: 5px;
-    background-color: #ffce54;
-    color: white;
-    border-radius: 5px;
-    font-size: 0.8em;
-    font-weight: bold;
-    text-transform: uppercase;
-}
+
 [card-content-text] {
     color: #585858;
     overflow: hidden;
@@ -82,16 +74,4 @@ ion-card {
     font-weight: bold;
     border-radius: 10px;
     margin-left: 14rem;
-}
-/*
-* Tag de final das postagens
-*/
-[end-tag-scroll] {
-    padding: 8px;
-    background-color: #ababab;
-    color: white;
-    border-radius: 50px;
-    font-size: small;
-    font-weight: lighter;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
