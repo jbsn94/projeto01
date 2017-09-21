@@ -4,7 +4,6 @@ import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
 import $ from 'jquery';
-import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
 
 @IonicPage()
 @Component({
@@ -22,8 +21,7 @@ export class BezerroshojePage {
               public modal: ModalController,
               public loading: LoadingController,
               public popoverCtrl: PopoverController,
-              public toastCtrl: ToastController,
-              private localNotification: PhonegapLocalNotification) {
+              public toastCtrl: ToastController) {
                 let loader = this.loading.create({
                   content: 'Carregando..'
                 });
@@ -31,11 +29,6 @@ export class BezerroshojePage {
                 this.platform.ready().then(()=>{
                   this.http.get(this.url).subscribe(res => {
                     this.ajustaXml(res.text(), loader);
-                    this.localNotification.create('Bezerros Hoje', {
-                      tag: 'message1',
-                      body: 'COMICICA ganha força nessa legislatura',
-                      icon: 'assets/icon/favicon.ico'
-                    });
                   });
                 });
   }
