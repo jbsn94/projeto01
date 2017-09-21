@@ -24,14 +24,14 @@
     <ng-container *ngIf="noticia.imgs.length > 1">
       <ion-slides loop="true" pager zoom="true" paginationType="fraction">
         <ion-slide *ngFor="let img of noticia.imgs">
-          <img [src]="img.src" style="width: 100%" imageViewer/>
+          <img [src]="img.src" style="width: 100%;min-height: 200px;" imageViewer/>
         </ion-slide>
       </ion-slides>
     </ng-container>
 
     <!-- If have only one img -->
     <ng-container *ngIf="noticia.imgs.length == 1">
-      <img [src]="noticia.imgs[0].src" imageViewer/>
+      <img [src]="noticia.imgs[0].src" imageViewer style="min-height: 200px;"/>
     </ng-container>
 
     <ion-card-content>

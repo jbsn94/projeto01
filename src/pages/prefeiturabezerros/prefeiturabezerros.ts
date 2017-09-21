@@ -14,6 +14,7 @@ export class PrefeiturabezerrosPage {
   url: string = 'https://bezerros.pe.gov.br/portal/feed';
   posts: any = [];
   _posts: any = [];
+  carregando: boolean = true;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
@@ -21,22 +22,34 @@ export class PrefeiturabezerrosPage {
     public modal: ModalController,
     public loading: LoadingController,
     public popoverCtrl: PopoverController) {
-      let loader = this.loading.create({
-        content: 'Carregando..'
-      });
-      loader.present();
       this.platform.ready().then(()=>{
-        this.http.get(this.url).subscribe(res => {
-          this.ajustaXml(res.text(), loader);
-        });
+        this.carregar();
       });
+  }
+
+  reload(){
+    if(!this.carregando){
+      this.carregar();
+    }
+  }
+
+  carregar(){
+    this._posts = [];
+    this.carregando = true;
+    this.http.get(this.url).subscribe(res => {
+      this.ajustaXml(res.text());
+    }, err => {
+      setTimeout(() => {
+        this.carregando = false;
+      }, 500);
+    });
   }
 
   /**
    * @description Método para o tratamento do xml
    * @param {String} xml
    */
-  ajustaXml(xml, loader){
+  ajustaXml(xml){
     xml2js.parseString(xml, (err, result) => {
       let posts = result.rss.channel[0].item;
       let regex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
@@ -46,7 +59,8 @@ export class PrefeiturabezerrosPage {
         $(posts[i]['content:encoded'][0]).find('img').each(function(index,value){
           if($(this).attr('src').match(regex) && !$(this).attr('src').match(regex2) && !$(this).hasClass('wp-smiley')){
             imgs.push({
-              src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('src'),
+              //src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('src'),
+              src: $(this).attr('src'),
             });
           }
         });
@@ -64,7 +78,7 @@ export class PrefeiturabezerrosPage {
       }
       this.posts = this._posts.slice(0,3);
     });
-    loader.dismiss();
+    this.carregando = false;
   }
 
   openModal(noticia){

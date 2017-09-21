@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="br.com.bezerros.digital" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<?xml version='1.0.5' encoding='utf-8'?>
+<widget id="br.com.bezerros.digital" version="1.0.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Bezerros Digital</name>
     <description>Aplicativo para visualização de notícias.</description>
     <author email="josebarbosaneto94@gmail.com" href="http://netobarbosa.com.br/">JB Soluções</author>
