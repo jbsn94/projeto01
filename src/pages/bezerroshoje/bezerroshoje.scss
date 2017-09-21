@@ -2,4 +2,14 @@ page-bezerroshoje {
     .scroll-content{
         background-color: #f5f5f5
     }
+    .spinner-md-crescent circle {
+        stroke: #ababab !important;
+    }
+}
+img-loader > ion-spinner {
+    min-height: 80px;
+}
+
+img-loader > img {
+    min-height: 10px;
 }

@@ -16,4 +16,5 @@ blogs para facilitar a visualização dessas informações.
 
 ## Profximas features:
 1. [Lazyload Img](https://www.npmjs.com/package/ng2-lazyload-image)
+2. [Lazyload Img](https://www.npmjs.com/package/ionic-image-loader)
 

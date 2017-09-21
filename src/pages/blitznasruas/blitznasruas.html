@@ -4,61 +4,89 @@
         <ion-icon name="menu"></ion-icon>
       </button>
       <ion-title>Blitz nas Ruas</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="reload()">
+          <ion-icon name="refresh"></ion-icon>
+        </button>
+      </ion-buttons>
     </ion-navbar>
   </ion-header>
   
   
   <ion-content no-padding>
-    <ng-container *ngFor="let post of posts">
-  
-      <ion-card *ngIf="!post.iframe" class="animated fadeInRight">
-        <!-- Post category -->
-        <p categoria>
-          <ion-badge color="amarelo">{{post.categoria}}</ion-badge>
-        </p>
-        
-        <button ion-button ion-only clear style="
-        z-index: 2;
-        position: absolute;
-        font-size: 1.8rem;
-        right: 0px;
-        margin-top: 0px;" (click)="cardPopup($event, post)">
-          <ion-icon name="md-more" icon-right style="color:#BFBFBF"></ion-icon>
-        </button>
-
-        <!-- Post image -->
-        <ng-container *ngIf="post.imgs.length">
-          <img [src]="post.imgs[0].src" style="min-height: 10px" imageViewer/>
-        </ng-container>
-        
-        <!-- When post don't have img -->
-        <ng-container *ngIf="post.imgs.length == 0">
-            <img src="assets/imgs/blitznasruas.jpg">
-        </ng-container>
-
-        <!-- Post content -->
-        <ion-card-content>
-          <ion-card-title style="font-size: 2.0rem;font-weight: bold;">
-            {{post.title}}
-          </ion-card-title>
-          <p card-content-text>{{post.texto}}</p>
-        </ion-card-content>
-  
-        <!-- Post button action -->
-        <button ion-item color="azul" *ngIf="post.texto.length > 5" (click)="openModal(post)">
-          Veja mais
-          <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
-        </button>
-      </ion-card>
-  
-    </ng-container>
+    <div class="animated" style="height: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;" *ngIf="carregando || posts.length == 0">
+      <div *ngIf="carregando" class="animated" [ngClass]="{'fadeIn' : carregando, 'fadeOut' : !carregando}" style="display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color:#ababab">
+        <ion-spinner></ion-spinner>
+        <b style="padding-top: 5px;">Carregando</b>
+      </div>
+      <div *ngIf="posts.length == 0 && !carregando" class="animated" [ngClass]="{'fadeIn' : posts.length == 0 && !carregando, 'fadeOut' : !(posts.length == 0 && !carregando)}" style="display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;">
+          <ion-icon name="wifi" style="font-size: 8rem" color="cinza"></ion-icon>
+          <b style="color:#ababab">Estamos com problema na conexão</b>
+          <button ion-button icon-left (click)="reload()" color="amarelo">
+            <ion-icon name="refresh"></ion-icon>
+            Tentar novamente
+          </button>
+      </div>
+    </div>
+    <ng-container *ngIf="!carregando && posts.length > 0">
+      <ng-container *ngFor="let post of posts">
     
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="this.posts.length < this._posts.length">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  
-    <p *ngIf="this.posts.length == this._posts.length && this.posts.length != 0" text-center>
-        <ion-badge color="cinza">Fim</ion-badge>
-    </p>
+        <ion-card *ngIf="!post.iframe" class="animated fadeInRight">
+          <!-- Post category -->
+          <p categoria>
+            <ion-badge color="amarelo">{{post.categoria}}</ion-badge>
+          </p>
+          
+          <button ion-button ion-only clear style="
+          z-index: 2;
+          position: absolute;
+          font-size: 1.8rem;
+          right: 0px;
+          margin-top: 0px;" (click)="cardPopup($event, post)">
+            <ion-icon name="md-more" icon-right style="color:#BFBFBF"></ion-icon>
+          </button>
+
+          <!-- Post image -->
+          <ng-container *ngIf="post.imgs.length">
+            <img [src]="post.imgs[0].src" style="min-height: 10px" imageViewer/>
+          </ng-container>
+          
+          <!-- When post don't have img -->
+          <ng-container *ngIf="post.imgs.length == 0">
+              <img src="assets/imgs/blitznasruas.jpg">
+          </ng-container>
+
+          <!-- Post content -->
+          <ion-card-content>
+            <ion-card-title style="font-size: 2.0rem;font-weight: bold;">
+              {{post.title}}
+            </ion-card-title>
+            <p card-content-text>{{post.texto}}</p>
+          </ion-card-content>
+    
+          <!-- Post button action -->
+          <button ion-item color="azul" *ngIf="post.texto.length > 5" (click)="openModal(post)">
+            Veja mais
+            <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
+          </button>
+        </ion-card>
+    
+      </ng-container>
+      
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="this.posts.length < this._posts.length">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    
+      <p *ngIf="this.posts.length == this._posts.length && this.posts.length != 0" text-center>
+          <ion-badge color="cinza">Fim</ion-badge>
+      </p>
+    </ng-container>
   </ion-content>
   
