@@ -14,3 +14,6 @@ blogs para facilitar a visualização dessas informações.
 4. Visualização de imagens utilizando o [ionicImageViewer](https://github.com/Riron/ionic-img-viewer).
 5. Compartilhamento de postagens para Whatsapp, E-mail, Facebook e entre outros utilizando o componente [Social sharing](https://ionicframework.com/docs/native/social-sharing/).
 
+## Profximas features:
+1. [Lazyload Img](https://www.npmjs.com/package/ng2-lazyload-image)
+
