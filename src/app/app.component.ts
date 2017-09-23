@@ -25,9 +25,9 @@ export class MyApp {
 
   initializeApp() {
     //Set de app version
-    // this.appVersion.getVersionNumber().then(v =>  {
-    //   this.versao = v;
-    // });
+    this.appVersion.getVersionNumber().then(version =>  {
+      this.versao = version;
+    });
 
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
