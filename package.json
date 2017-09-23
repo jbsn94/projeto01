@@ -75,7 +75,8 @@
             "cordova-plugin-x-toast": {},
             "cordova-plugin-inappbrowser": {},
             "phonegap-plugin-local-notification": {},
-            "cordova-plugin-app-version": {}
+            "cordova-plugin-app-version": {},
+            "cordova-plugin-console": {}
         },
         "platforms": [
             "android"
