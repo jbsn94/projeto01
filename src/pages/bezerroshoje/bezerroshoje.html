@@ -38,9 +38,9 @@
 
   <ng-container *ngIf="!carregando && posts.length > 0">
 
-    <ng-container *ngFor="let post of posts">
+    <ng-container no-lines *ngFor="let post of posts">
   
-      <ion-card *ngIf="!post.iframe" class="animated fadeInRight">
+      <ion-card class="animated fadeInRight">
         <!-- Post category -->
         <p categoria>
           <ion-badge color="amarelo">{{post.categoria}}</ion-badge>
@@ -68,16 +68,18 @@
         </ng-container>
   
         <!-- When post don't have img -->
-        <ng-container *ngIf="post.imgs.length == 0">
+        <ng-container *ngIf="post.imgs.length == 0 && !post.iframe">
           <div style="height: 10px"></div>
         </ng-container>
   
         <!-- Post content -->
-        <ion-card-content>
+        <ion-card-content select-text *ngIf="!post.iframe">
           <ion-card-title style="font-size: 2.0rem;font-weight: bold;">
             {{post.title}}
           </ion-card-title>
           <p card-content-text *ngIf="!post.mp4">{{post.texto}}</p>
+        </ion-card-content>
+        <ion-card-content [innerHTML]="post.iframe" *ngIf="post.iframe" style="padding: 0;">
         </ion-card-content>
   
         <!-- If post have Video -->
@@ -86,12 +88,11 @@
         </video>
   
         <!-- Post button action -->
-        <button ion-item color="azul" *ngIf="post.texto.length > 5 && !post.mp4" (click)="openModal(post)">
+        <button ion-item color="azul" *ngIf="post.texto.length > 5 && !post.mp4 && !post.iframe" (click)="openModal(post)">
           Veja mais
           <ion-icon name="ios-arrow-forward-outline" item-end></ion-icon>
         </button>
       </ion-card>
-  
     </ng-container>
   
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="this.posts.length < this._posts.length">

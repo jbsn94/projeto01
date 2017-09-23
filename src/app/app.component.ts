@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AppVersion } from '@ionic-native/app-version';
 
 @Component({
   templateUrl: 'app.html'
@@ -10,7 +11,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'BezerroshojePage';
-
+  versao: any;
   pages: Array<{nome: string}> = [
     {nome: 'BezerroshojePage'},
     {nome: 'PrefeiturabezerrosPage'},
@@ -18,11 +19,16 @@ export class MyApp {
     {nome: 'BoletimesportivoPage'}
   ];
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private appVersion: AppVersion) {
     this.initializeApp();
   }
 
   initializeApp() {
+    //Set de app version
+    // this.appVersion.getVersionNumber().then(v =>  {
+    //   this.versao = v;
+    // });
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

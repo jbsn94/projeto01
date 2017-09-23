@@ -60,8 +60,7 @@ export class BoletimesportivoPage {
           $(posts[i]['content:encoded'][0]).find('img').each(function(index,value){
             if($(this).attr('src').match(regex) && !$(this).attr('src').match(regex2) && !$(this).hasClass('wp-smiley')){
               imgs.push({
-                //src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('src'),
-                src: $(this).attr('src'),
+                src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('src'),
               });
             }
           });

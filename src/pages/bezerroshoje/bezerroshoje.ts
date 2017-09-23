@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
 import $ from 'jquery';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -22,7 +23,8 @@ export class BezerroshojePage {
               public modal: ModalController,
               public loading: LoadingController,
               public popoverCtrl: PopoverController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public dom: DomSanitizer) {
                 this.platform.ready().then(()=>{
                   this.carregar();
                 });
@@ -60,25 +62,22 @@ export class BezerroshojePage {
         $(posts[i]['content:encoded'][0]).find('img').each(function(index,value){
           if($(this).attr('src').match(regex) && !$(this).attr('src').match(regex2) && !$(this).hasClass('wp-smiley')){
             imgs.push({
-              //src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('src'),
-              src: $(this).attr('src'),
+              src: $(this).attr('srcset') ? $(this).attr('srcset').split(',')[0].replace(/-\d+x\d+/g,'').match(regex)[0] : $(this).attr('src'),
             });
           }
         });
-        if(!$(posts[i]['content:encoded'][0]).find('iframe')[0]){
-          this._posts.push({
-            title: posts[i].title[0],
-            imgs: imgs,
-            texto: $(posts[i]['content:encoded'][0]).text(),
-            categoria: posts[i]['category'][0],
-            link: posts[i]['link'][0],
-            data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
-            autor: posts[i]['dc:creator'][0],
-            iframe: $(posts[i]['content:encoded'][0]).find('iframe')[0],
-            fonte: result.rss.channel[0]['title'][0] ? result.rss.channel[0]['title'][0] : result.rss.channel[0]['link'][0],
-            mp4: $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]') ? $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]').attr('src') : null
-          });
-        }
+        this._posts.push({
+          title: posts[i].title[0],
+          imgs: imgs,
+          texto: $(posts[i]['content:encoded'][0]).text(),
+          categoria: posts[i]['category'][0],
+          link: posts[i]['link'][0],
+          data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
+          autor: posts[i]['dc:creator'][0],
+          iframe: $(posts[i]['content:encoded'][0]).find('iframe')[0] ? this.dom.bypassSecurityTrustHtml($(posts[i]['content:encoded'][0]).find('iframe')[0].outerHTML) : null,
+          fonte: result.rss.channel[0]['title'][0] ? result.rss.channel[0]['title'][0] : result.rss.channel[0]['link'][0],
+          mp4: $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]') ? $(posts[i]['content:encoded'][0]).find('source[type="video/mp4"]').attr('src') : null
+        });
       }
       this.posts = this._posts.slice(0,3);
     });

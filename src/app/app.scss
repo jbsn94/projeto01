@@ -75,3 +75,29 @@ ion-card {
     border-radius: 10px;
     margin-left: 14rem;
 }
+
+[select-text] {
+    user-select: text;
+}
+
+[anuncio] {
+    border: none;
+    margin-right: 0;
+    margin-left: 0;
+    width: 100%;
+    box-shadow: 1px 1px 1px #d2d2d2;
+    img {
+        width: 100%;
+        transition: height 0.8s;
+        @media screen and (orientation:portrait) {
+            height: 100px;
+        }
+        @media screen and (orientation:landscape) {
+            height: 150px;
+        }
+    }
+}
+
+iframe {
+    width: 100%;
+}
