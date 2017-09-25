@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
@@ -20,8 +20,7 @@ export class BoletimesportivoPage {
     public platform: Platform,
     public http: Http,
     public modal: ModalController,
-    public loading: LoadingController,
-    public popoverCtrl: PopoverController) {
+    public loading: LoadingController) {
       this.platform.ready().then(()=>{
         this.carregar();
       });
@@ -81,13 +80,6 @@ export class BoletimesportivoPage {
       this.posts = this._posts.slice(0,3);
     });
     this.carregando = false;
-  }
-
-  cardPopup(event, noticia){
-    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: noticia});
-    popover.present({
-      ev: event
-    });
   }
 
   openModal(noticia){

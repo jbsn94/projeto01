@@ -18,3 +18,21 @@ blogs para facilitar a visualização dessas informações.
 1. [Lazyload Img](https://www.npmjs.com/package/ng2-lazyload-image)
 2. [Lazyload Img](https://www.npmjs.com/package/ionic-image-loader)
 
+# Gerando a apk de produção
+
+1. Gerar o keystore
+```
+$ keytool -genkey -v -keystore minha-chave.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+```
+2. Gerar a apk de produção
+```
+$ ionic cordova build android --prod --optimizejs --minifycss --minifyjs --release
+```
+3. Assinar a apk com a keystore gerada previamente 
+```
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore minha-chave.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name
+```
+4. Aplica o zipalign na apk assinada
+```
+$ C:\Users\CLIENTE\AppData\Local\Android\sdk\build-tools\25.0.3\zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk bezerrosdigital.apk
+```

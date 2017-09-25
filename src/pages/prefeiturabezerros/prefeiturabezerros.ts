@@ -20,8 +20,7 @@ export class PrefeiturabezerrosPage {
     public platform: Platform,
     public http: Http,
     public modal: ModalController,
-    public loading: LoadingController,
-    public popoverCtrl: PopoverController) {
+    public loading: LoadingController) {
       this.platform.ready().then(()=>{
         this.carregar();
       });
@@ -83,13 +82,6 @@ export class PrefeiturabezerrosPage {
   openModal(noticia){
     let modal = this.modal.create('NoticiaPage', {noticia: noticia});
     modal.present();
-  }
-  
-  cardPopup(event, noticia){
-    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: noticia});
-    popover.present({
-      ev: event
-    });
   }
 
   doInfinite(infiniteScroll) {

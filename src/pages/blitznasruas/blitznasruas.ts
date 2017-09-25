@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
@@ -20,8 +20,7 @@ export class BlitznasruasPage {
     public platform: Platform,
     public http: Http,
     public modal: ModalController,
-    public loading: LoadingController,
-    public popoverCtrl: PopoverController) {
+    public loading: LoadingController) {
       this.platform.ready().then(()=>{
         this.carregar();
       });
@@ -51,7 +50,6 @@ export class BlitznasruasPage {
   ajustaXml(xml){
     xml2js.parseString(xml, (err, result) => {
       let posts = result.rss.channel[0].item;
-      console.log(posts);
       let regex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
       let regex2 = /(?:favicon\.png)/i;
       for(let i in posts){
@@ -90,13 +88,6 @@ export class BlitznasruasPage {
   openModal(noticia){
     let modal = this.modal.create('NoticiaPage', {noticia: noticia});
     modal.present();
-  }
-
-  cardPopup(event, noticia){
-    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: noticia});
-    popover.present({
-      ev: event
-    });
   }
 
   doInfinite(infiniteScroll) {
