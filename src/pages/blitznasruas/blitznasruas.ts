@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
 import $ from 'jquery';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,8 @@ export class BlitznasruasPage {
     public platform: Platform,
     public http: Http,
     public modal: ModalController,
-    public loading: LoadingController) {
+    public loading: LoadingController,
+    public dom: DomSanitizer) {
       this.platform.ready().then(()=>{
         this.carregar();
       });
@@ -72,6 +74,7 @@ export class BlitznasruasPage {
           title: posts[i].title[0],
           imgs: imgs,
           texto: $(posts[i]['content:encoded'][0]).text(),
+          content: this.dom.bypassSecurityTrustHtml(posts[i]['content:encoded'][0].replace(/<img\s[a-z\=\"\s\-0-9\:\/\/\.\,\(\)\_]+(\>|\/\>)/gi,'')),
           categoria: posts[i]['category'][0],
           link: posts[i]['link'][0],
           data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
