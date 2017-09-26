@@ -101,3 +101,13 @@ ion-card {
 iframe {
     width: 100%;
 }
+
+[start] {
+    order: 3;
+}
+
+ion-card img {
+    max-height: 300px;
+    margin: auto;
+    width: auto;
+}

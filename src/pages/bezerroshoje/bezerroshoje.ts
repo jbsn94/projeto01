@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, PopoverController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 @IonicPage()
 @Component({
   selector: 'page-bezerroshoje',
-  templateUrl: 'bezerroshoje.html',
+  templateUrl: 'bezerroshoje.html'
 })
 export class BezerroshojePage {
   url: string = 'http://bezerroshoje.ne10.uol.com.br/feed';
@@ -22,7 +22,6 @@ export class BezerroshojePage {
               public http: Http,
               public modal: ModalController,
               public loading: LoadingController,
-              public popoverCtrl: PopoverController,
               public toastCtrl: ToastController,
               public dom: DomSanitizer) {
                 this.platform.ready().then(()=>{
@@ -70,6 +69,7 @@ export class BezerroshojePage {
           title: posts[i].title[0],
           imgs: imgs,
           texto: $(posts[i]['content:encoded'][0]).text(),
+          content: this.dom.bypassSecurityTrustHtml(posts[i]['content:encoded'][0].replace(/<img\s[a-z\=\"\s\-0-9\:\/\/\.\,\(\)\_]+(\>|\/\>)/gi,'')),
           categoria: posts[i]['category'][0],
           link: posts[i]['link'][0],
           data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
@@ -87,13 +87,6 @@ export class BezerroshojePage {
   openModal(noticia){
     let modal = this.modal.create('NoticiaPage', {noticia: noticia});
     modal.present();
-  }
-
-  cardPopup(event, noticia){
-    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: noticia});
-    popover.present({
-      ev: event
-    });
   }
 
   doInfinite(infiniteScroll) {

@@ -1,15 +1,15 @@
 <ion-header>
   <ion-toolbar color="amarelo">
-    <div style="display:flex">
+    <ion-buttons start>
       <button ion-button icon-only clear (click)="close()">
         <ion-icon name="arrow-round-back" color="light"></ion-icon>
       </button>
-      <ion-title text-center>
-        {{noticia.categoria}}
-      </ion-title>
-    </div>
+    </ion-buttons>
+    <ion-title text-center>
+      {{noticia.categoria}}
+    </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="menu($event)">
+      <button ion-button icon-only card-btn-options [noticia]="noticia">
         <ion-icon name="md-more" color="light"></ion-icon>
       </button>
     </ion-buttons>
@@ -38,7 +38,7 @@
       <ion-card-title text-center>
         {{noticia.title}}
       </ion-card-title>
-      <p text-justify class="conteudo" [innerHTML]="noticia.texto"></p>
+      <p text-justify class="conteudo" [innerHTML]="noticia.content"></p>
       <p class="creditos">
         <small>
           <b>Fonte:</b> <i>{{noticia.fonte}}</i>

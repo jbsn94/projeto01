@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { BezerroshojePage } from './bezerroshoje';
 import { IonicImageViewerModule } from 'ionic-img-viewer';
 import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notification';
+import { CardbuttonoptionsDirectiveModule } from '../../directives/cardbuttonoptions/cardbuttonoptions.module';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { PhonegapLocalNotification } from '@ionic-native/phonegap-local-notifica
   ],
   imports: [
     IonicImageViewerModule,
+    CardbuttonoptionsDirectiveModule,
     IonicPageModule.forChild(BezerroshojePage),
   ],
   providers: [

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
 import $ from 'jquery';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -21,7 +22,7 @@ export class BlitznasruasPage {
     public http: Http,
     public modal: ModalController,
     public loading: LoadingController,
-    public popoverCtrl: PopoverController) {
+    public dom: DomSanitizer) {
       this.platform.ready().then(()=>{
         this.carregar();
       });
@@ -51,7 +52,6 @@ export class BlitznasruasPage {
   ajustaXml(xml){
     xml2js.parseString(xml, (err, result) => {
       let posts = result.rss.channel[0].item;
-      console.log(posts);
       let regex = /(https?:\/\/.*\.(?:png|jpg|jpeg))/i;
       let regex2 = /(?:favicon\.png)/i;
       for(let i in posts){
@@ -74,6 +74,7 @@ export class BlitznasruasPage {
           title: posts[i].title[0],
           imgs: imgs,
           texto: $(posts[i]['content:encoded'][0]).text(),
+          content: this.dom.bypassSecurityTrustHtml(posts[i]['content:encoded'][0].replace(/<img\s[a-z\=\"\s\-0-9\:\/\/\.\,\(\)\_]+(\>|\/\>)/gi,'')),
           categoria: posts[i]['category'][0],
           link: posts[i]['link'][0],
           data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
@@ -90,13 +91,6 @@ export class BlitznasruasPage {
   openModal(noticia){
     let modal = this.modal.create('NoticiaPage', {noticia: noticia});
     modal.present();
-  }
-
-  cardPopup(event, noticia){
-    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: noticia});
-    popover.present({
-      ev: event
-    });
   }
 
   doInfinite(infiniteScroll) {

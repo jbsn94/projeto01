@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ModalController, LoadingController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import * as xml2js from 'xml2js';
 import * as moment from 'moment';
 import $ from 'jquery';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -21,7 +22,7 @@ export class BoletimesportivoPage {
     public http: Http,
     public modal: ModalController,
     public loading: LoadingController,
-    public popoverCtrl: PopoverController) {
+    public dom: DomSanitizer) {
       this.platform.ready().then(()=>{
         this.carregar();
       });
@@ -69,6 +70,7 @@ export class BoletimesportivoPage {
           title: posts[i].title[0],
           imgs: imgs,
           texto: posts[i]['content:encoded'] ? $(posts[i]['content:encoded'][0]).text() : posts[i]['description'][0],
+          content: this.dom.bypassSecurityTrustHtml(posts[i]['description'][0].replace(/<img\s[a-z\=\"\s\-0-9\:\/\/\.\,\(\)\_]+(\>|\/\>)/gi,'')),
           categoria: posts[i]['category'][0],
           link: posts[i]['link'][0],
           data: moment(new Date(posts[i]['pubDate'][0])).format('DD/MM/YYYY'),
@@ -81,13 +83,6 @@ export class BoletimesportivoPage {
       this.posts = this._posts.slice(0,3);
     });
     this.carregando = false;
-  }
-
-  cardPopup(event, noticia){
-    let popover = this.popoverCtrl.create('NoticiamenuPage', {noticia: noticia});
-    popover.present({
-      ev: event
-    });
   }
 
   openModal(noticia){
