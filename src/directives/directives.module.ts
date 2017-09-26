@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CardbuttonoptionsDirective } from './cardbuttonoptions/cardbuttonoptions';
 
 @NgModule({
-	declarations: [CardbuttonoptionsDirective],
+	declarations: [],
 	imports: [],
-	exports: [CardbuttonoptionsDirective]
+	exports: []
 })
 export class DirectivesModule {}
